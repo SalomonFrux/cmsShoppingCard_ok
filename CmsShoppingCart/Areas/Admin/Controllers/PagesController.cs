@@ -1,9 +1,6 @@
-﻿using CmsShoppingCart.Models;
-using CmsShoppingCart.Models.ViewModels.Pages;
-using System;
+﻿using CmsShoppingCart.Models.ViewModels.Pages;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CmsShoppingCart.Models.Data;
 
@@ -25,8 +22,15 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
             }
             //return the view with list
             return View(pageList);
-        }
 
+
+        }
+        // GET: Admin/Pages/AddPage
+        public ActionResult AddPage()
+        {
+            return View();
+
+        }
        
     }
 }
