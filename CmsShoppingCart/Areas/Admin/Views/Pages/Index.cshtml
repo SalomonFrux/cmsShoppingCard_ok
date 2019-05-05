@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.ViewModels.Pages.PageVM>
+
+@{
+   
+
+    ViewBag.Title = "Pages";
+}
+
+<h2>Pages</h2>
+
+<p>
+    @Html.ActionLink("Add New Page", "Add Page")
+</p>
+@if (Model.Any())
+{
+    <table class="table">
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Slug
+            </th>
+            <th>
+                Body
+            </th>
+            <th>
+                Sorting
+            </th>
+            <th>
+                Sidebar
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.HasSidebar)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditPage", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "PageDetails", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "DeletePage", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+
+    <h1 class="text-center">There are no pages</h1>
+}
