@@ -34,4 +34,5 @@ namespace CmsShoppingCart.Models.ViewModels.Pages
         public bool HasSidebar { get; set; }
 
     }
+
 }
