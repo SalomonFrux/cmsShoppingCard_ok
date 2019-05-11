@@ -134,14 +134,14 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
                 //Get paage Id 
                 int Id = pageVM.Id;
                 // declare Slug / initialise  
-                string slug ="Home Page";
+                string slug ="Services";
                 //Get the page 
                 PageDTO pageDTO = sam.Pages.Find(Id);
 
                 // DTO the Title 
                 pageDTO.Title = pageVM.Title;
                 // check for Slug  Set it if need be 
-                if (pageVM.Slug != "Home Pages")
+                if (pageVM.Slug != "home")
                 {
                     if(string.IsNullOrWhiteSpace(pageVM.Slug))
                     {
@@ -156,7 +156,8 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
 
 
                 // check if Title and slug are unique
-                if (sam.Pages.Where(element => element.Id != pageVM.Id).Any(element => element.Title == pageVM.Title) || sam.Pages.Where(element => element.Id != pageVM.Id).Any(element => element.Slug == slug))
+                if (sam.Pages.Where(element => element.Id != pageVM.Id).Any(element => element.Title == pageVM.Title) || 
+                    sam.Pages.Where(element => element.Id != pageVM.Id).Any(element => element.Slug == slug))
                 {
                    ModelState.AddModelError("", "That Title od Slug already Exist");
                     return View(pageVM);
@@ -178,5 +179,29 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
 
             return RedirectToAction("EditPage");
         }
-    }
+
+        // GET: Admin/Pages/PageDetails/Id
+
+        public ActionResult PageDetails(int Id) // Give the page details based on the Id
+        {
+            // declare the pageVm 
+            PageVM pageVM;
+            // Get the page
+            using (Sam sam = new Sam())
+            {
+                PageDTO pageDTO = sam.Pages.Find(Id);
+
+            //Confirm the page exist 
+            if(pageDTO == null)
+                {
+                    return Content("The page does not exist");
+
+                }
+                //Init the PageVm
+                pageVM = new PageVM(pageDTO);
+            }
+            //Return the view modal 
+            return View(pageVM);
+            }
+        }
 }  
