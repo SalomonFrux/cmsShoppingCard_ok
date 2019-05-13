@@ -13,7 +13,7 @@
 </p>
 @if (!Model.Any())
 {
-<h1 class="text-center">There are no pages</h1>
+    <h1 class="text-center">There are no pages</h1>
 }
 
 
@@ -22,55 +22,89 @@ else
 {
 
 
-<table class="table">
-    <tr>
-        <th>
-            Title
-        </th>
-        <th>
-            Slug
-        </th>
+    <table class="table  Sorting" id="Pages">
+        <tr class="home">
+            <th>
+                Title
+            </th>
+            <th>
+                Slug
+            </th>
 
-        <th>
-            Sidebar
-        </th>
-        <th></th>
-    </tr>
+            <th>
+                Sidebar
+            </th>
+            <th></th>
+        </tr>
 
-    @foreach (var item in Model)
+        @foreach (var item in Model)
         {
 
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Slug)
+            <tr id="id_@item.Id" class="@item.Slug">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
 
-        <td>
-            @Html.DisplayFor(modelItem => item.HasSidebar)
-        </td>
-        <td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HasSidebar)
+                </td>
+                <td>
 
-            @Html.ActionLink("Edit", "EditPage", new { id = item.Id }) |
-            @Html.ActionLink("Details", "PageDetails", new { id = item.Id }) |
-            @if (item.Slug != "home")
-             {
-            @Html.ActionLink("Delete", "DeletePage", new { id = item.Id }, new { @class ="delete"})
+                    @Html.ActionLink("Edit", "EditPage", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "PageDetails", new { id = item.Id }) |
+                    @if (item.Slug != "home")
+                    {
+                        @Html.ActionLink("Delete", "DeletePage", new { id = item.Id }, new { @class = "delete" })
 
-             }
-        </td>
-    </tr>
+                    }
+                </td>
+            </tr>
         }
 
-</table>
+    </table>
 }
-@section Keyassemahe{
+
+
+
+
+
+
+
+
+
+@section Keyassemahe {
+
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+    <script>
+    @*confirm page deletion*@
+        $(function () {
+            if ($("a.delete").click(function () {
+                if (!confirm("Do you really want to delete the page?")) return false;
+            }));
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+            $("table#Pages tbody").sortable({
+                items: "tr:not(.home)",
+                Placeholder: "ui-state-highlight",
+                update: function () {
+                    var ids = $("table#Pages tbody").sortable("serialize");
+                    console.log(ids);
+                }
+            });
+//////////////////////////////////////////////////////////////////////////////////////////
+        });
+    </script> }
+
+
+@*@section Keyassemahe{
     <script>
         $(function () {
             $("a.delete").click(function () {
                 if (!confirm("Confirm page deletion")) return false;
             });
         });
-    </script>}
-
+    </script>}*@

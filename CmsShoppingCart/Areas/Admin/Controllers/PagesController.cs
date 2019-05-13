@@ -19,7 +19,7 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
             using (Sam db = new Sam  () )
             {
                 //Initialise that list                  
-                                 pageList = db.Pages.ToArray().OrderBy(x => x.Sorting).Select(x => new PageVM(x)).ToList();
+             pageList = db.Pages.ToArray().OrderBy(x => x.Sorting).Select(x => new PageVM(x)).ToList();
                 return View(pageList);
             }
          
