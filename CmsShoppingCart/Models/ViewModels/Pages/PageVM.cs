@@ -35,6 +35,7 @@ namespace CmsShoppingCart.Models.ViewModels.Pages
         public int Sorting { get; set; }
         public bool HasSidebar { get; set; }
 
+
     }
 
 }
