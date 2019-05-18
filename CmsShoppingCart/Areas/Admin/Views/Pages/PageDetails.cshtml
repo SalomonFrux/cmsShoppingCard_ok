@@ -31,24 +31,24 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Body)
+            @Html.Raw(Model.Body)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Sorting)
-        </dt>
+        </dt>*@
 
-        <dd>
+        @*<dd>
             @Html.DisplayFor(model => model.Sorting)
-        </dd>
+        </dd>*@
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.HasSidebar)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.HasSidebar)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>

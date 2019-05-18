@@ -22,12 +22,12 @@ else
 {
 
 
-    <table class="table  Sorting" id="Pages">
+    <table class="table sorting" id="Pages">   @*Look at this*@
         <tr class="home">
             <th>
                 Title
             </th>
-            <th>
+            <th>   
                 Slug
             </th>
 
@@ -40,7 +40,7 @@ else
         @foreach (var item in Model)
         {
 
-            <tr id="id_@item.Id" class="@item.Slug">
+            <tr id="id_@item.Id" class="@item.Slug">  @*Look at this*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
@@ -92,7 +92,10 @@ else
                 Placeholder: "ui-state-highlight",
                 update: function () {
                     var ids = $("table#Pages tbody").sortable("serialize");
-                    console.log(ids);
+                    //console.log(ids); 
+                    var url = "/Admin/Pages/ReorderPages";
+                    $.post(url, ids, function (data) {
+                    });
                 }
             });
 //////////////////////////////////////////////////////////////////////////////////////////

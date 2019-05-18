@@ -1,1 +1,14 @@
-﻿
+﻿table.sorting  tr:not(.home){
+    cursor:pointer;
+}
+.ui-state-highlight{
+    border:10px dashed #ccc;
+}
+
+
+/*table.Sorting tr:not(.home) {
+    cursor:pointer;
+}
+.ui-state-highlight{
+    border:10px dashed #ccc;
+}*/

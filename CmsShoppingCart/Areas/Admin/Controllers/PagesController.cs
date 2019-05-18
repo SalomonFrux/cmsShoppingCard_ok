@@ -16,15 +16,15 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
 
             List<PageVM> pageList;
 
-            using (Sam db = new Sam  () )
+            using (Sam db = new Sam())
             {
                 //Initialise that list                  
-             pageList = db.Pages.ToArray().OrderBy(x => x.Sorting).Select(x => new PageVM(x)).ToList();
+                pageList = db.Pages.ToArray().OrderBy(x => x.Sorting).Select(x => new PageVM(x)).ToList();
                 return View(pageList);
             }
-         
 
-        } 
+
+        }
         // GET: Admin/Pages/AddPage
         [HttpGet]
         public ActionResult AddPage()
@@ -37,11 +37,11 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
         public ActionResult AddPage(PageVM model)
         {
             // Check model state 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            using (Sam sam = new Sam()) 
+            using (Sam sam = new Sam())
 
             {
                 // Declare Slug 
@@ -51,16 +51,16 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
                 // DTO Title
                 dto.Title = model.Title;
                 // Check for and set Slug if need be
-                if(string.IsNullOrWhiteSpace(model.Slug))
+                if (string.IsNullOrWhiteSpace(model.Slug))
                 {
                     slug = model.Title.Replace(" ", "-").ToLower();
                 }
                 else
                 {
-                  slug = model.Slug.Replace(" ", "-").ToLower();
+                    slug = model.Slug.Replace(" ", "-").ToLower();
                 }
                 // Make sure Tile and Slug are unique
-                if (sam.Pages.Any(x => x.Title == model.Title) || sam.Pages.Any(x => x.Slug == slug)) 
+                if (sam.Pages.Any(x => x.Title == model.Title) || sam.Pages.Any(x => x.Slug == slug))
                 {
                     ModelState.AddModelError("", "That title or slug already exist.");
                     return View(model);
@@ -99,11 +99,11 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
             {
                 PageDTO pageDTO = sam.Pages.Find(Id);
 
-           
 
-            //Confirm the page exist 
-          
-               if(pageDTO == null)
+
+                //Confirm the page exist 
+
+                if (pageDTO == null)
                 {
                     return Content("The page does not exist");
                 }
@@ -121,7 +121,7 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
         // POST: Admin/Pages/EditPage/id - this method receive the page view model
 
         [HttpPost]
-        public ActionResult EditPage(PageVM pageVM) 
+        public ActionResult EditPage(PageVM pageVM)
         {
             // Check the model state 
             if (!ModelState.IsValid)
@@ -134,7 +134,7 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
                 //Get paage Id 
                 int Id = pageVM.Id;
                 // declare Slug / initialise  
-                string slug ="Services";
+                string slug = "Services";
                 //Get the page 
                 PageDTO pageDTO = sam.Pages.Find(Id);
 
@@ -143,7 +143,7 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
                 // check for Slug  Set it if need be 
                 if (pageVM.Slug != "home")
                 {
-                    if(string.IsNullOrWhiteSpace(pageVM.Slug))
+                    if (string.IsNullOrWhiteSpace(pageVM.Slug))
                     {
                         slug = pageVM.Title.Replace(" ", " ").ToLower();
 
@@ -156,10 +156,10 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
 
 
                 // check if Title and slug are unique
-                if (sam.Pages.Where(element => element.Id != pageVM.Id).Any(element => element.Title == pageVM.Title) || 
+                if (sam.Pages.Where(element => element.Id != pageVM.Id).Any(element => element.Title == pageVM.Title) ||
                     sam.Pages.Where(element => element.Id != pageVM.Id).Any(element => element.Slug == slug))
                 {
-                   ModelState.AddModelError("", "That Title od Slug already Exist");
+                    ModelState.AddModelError("", "That Title od Slug already Exist");
                     return View(pageVM);
                 }
 
@@ -170,11 +170,11 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
 
                 // save the DTO 
                 sam.SaveChanges();
-               
+
             }
             // Set the TemData message 
 
-            TempData["SM"] = "You have successfully edited the page!" ;
+            TempData["SM"] = "You have successfully edited the page!";
             // redirect 
 
             return RedirectToAction("EditPage");
@@ -191,8 +191,8 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
             {
                 PageDTO pageDTO = sam.Pages.Find(Id);
 
-            //Confirm the page exist 
-            if(pageDTO == null)
+                //Confirm the page exist 
+                if (pageDTO == null)
                 {
                     return Content("The page does not exist");
 
@@ -202,7 +202,7 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
             }
             //Return the view modal 
             return View(pageVM);
-            }
+        }
         // GET: Admin/Pages/DeletePage/Id
 
         public ActionResult DeletePage(int Id)
@@ -221,5 +221,71 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
             //Redirect
             return RedirectToAction("Index");
         }
+
+        // GET: Admin/Pages/DeletePage/Id
+        [HttpPost]
+
+        public void  ReorderPages(int[] Id)
+        {
+            using (Sam sam = new Sam())
+            { 
+                //set int count
+                int count = 1;
+                // declare the pageDTO 
+                PageDTO pageDTO;
+                // set sorting for each page
+                foreach (var pageId in Id)
+                {
+                    pageDTO = sam.Pages.Find(pageId);
+                    pageDTO.Sorting = count;
+                    sam.SaveChanges();
+                    count++;
+                }
+            }
+        }
+
+        // GET: Admin/Pages/EditSidebar/
+
+        [HttpGet]
+        public ActionResult EditSidebar()
+        {
+            // Declare model 
+            SidebarVM sidebarVM;
+
+            using (Sam sam = new Sam())
+            {
+                //Get the DTO
+                SidebarDTO sidebarDTO = sam.Sidebar.Find(1);
+                //int model 
+                sidebarVM = new SidebarVM(sidebarDTO);
+            }
+            // Return te view 
+            return View(sidebarVM);
+        }
+
+        // POST: Admin/Pages/EditSidebar/
+        [HttpPost]
+        public ActionResult EditSidebar(SidebarVM sidebarVM)
+        {
+            using (Sam sam = new Sam())
+            {
+                //Get the DTO (getting data from databse)
+                SidebarDTO sidebarDTO = sam.Sidebar.Find(1);
+                //DTO the body 
+                sidebarDTO.Body = sidebarVM.Body;
+
+                //save changes 
+                sam.SaveChanges();
+
+                TempData["SM"] = "Sidebar edited successfully";
+            }
+            // redirect
+            return  RedirectToAction("EditSidebar");
+        }
+        
     }
+   
+
+   
+    
 }  
