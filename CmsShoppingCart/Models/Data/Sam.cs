@@ -12,4 +12,4 @@ namespace CmsShoppingCart.Models.Data
         public DbSet<SidebarDTO> Sidebar { get; set; }
 
     }
-}
+} 
