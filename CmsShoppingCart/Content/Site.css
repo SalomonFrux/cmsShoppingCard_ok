@@ -4,11 +4,13 @@
 .ui-state-highlight{
     border:10px dashed #ccc;
 }
-
-
-/*table.Sorting tr:not(.home) {
-    cursor:pointer;
+div.new-category 
+ {
+    /*adding this to the categorie.cshtml*/
+    margin-top: 30px;
+    position: relative;
 }
-.ui-state-highlight{
-    border:10px dashed #ccc;
-}*/
+span.ajaxtext{
+    display: none;
+}
+

@@ -1,29 +1,32 @@
 ﻿@model IEnumerable<CmsShoppingCart.Models.ViewModels.Pages.ShopVM>
 
 @{
-    ViewBag.Title = "CategoriesPage";
+                /**/
+
+                ViewBag.Title = "CategoriesPage";
 }
 
 
 
 <h2>Categories</h2>
 
-<div class="new-category">
-    <input type="text" id=" new-categoryname" />
-    <p>
-        <a href="#" id="new-categorya">Add a new category</a>
-        <span>
-            <img src="~/Content/Pictures/ajax-loader.gif" />
-        </span>
-    </p>
-</div>
-@if (! Model.Any())
+@if (!Model.Any())
 {
     <h1 class="text-center">There is nothing in this category</h1>
 }
 else
 
-{ 
+{
+
+    <div class="new-category">
+        <input type="text" id=" new-categoryname" />
+        <p>
+            <a href="#" id="newcategorya">Add a new category</a>
+            <span class="ajaxtext">
+                <img src="~/Content/Pictures/ajax-loader.gif" />
+            </span>
+        </p>
+    </div>
 
     @*<p>
             @Html.ActionLink("Create New", "Create")
@@ -67,3 +70,35 @@ else
 
     </table>
 }
+
+@section Keyassemahe {
+
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+    <script>
+        @*Add new category*@
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+    @*confirm page deletion*@
+        $(function () {
+            if ($("a.delete").click(function () {
+                if (!confirm("Do you really want to delete the page?")) return false;
+            }));
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+            $("table#Pages tbody").sortable({
+                items: "tr:not(.home)",
+                Placeholder: "ui-state-highlight",
+                update: function () {
+                    var ids = $("table#Pages tbody").sortable("serialize");
+                    //console.log(ids);
+                    var url = "/Admin/Pages/ReorderPages";
+                    $.post(url, ids, function (data) {
+                    });
+                }
+            });
+//////////////////////////////////////////////////////////////////////////////////////////
+        });
+    </script> }
