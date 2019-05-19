@@ -259,7 +259,7 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
                 //int model 
                 sidebarVM = new SidebarVM(sidebarDTO);
             }
-            // Return te view 
+            // Return te view  
             return View(sidebarVM);
         }
 
