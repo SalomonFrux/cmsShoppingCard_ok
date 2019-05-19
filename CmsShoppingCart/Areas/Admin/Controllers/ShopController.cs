@@ -27,7 +27,7 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
 
             }
             // return a view with that list 
-            return View();
+            return View(shopVMs);
         }
     }
 }
