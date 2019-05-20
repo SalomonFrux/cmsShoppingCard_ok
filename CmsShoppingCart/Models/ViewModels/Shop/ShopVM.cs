@@ -1,12 +1,15 @@
-﻿using System;
+﻿using CmsShoppingCart.Models.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using CmsShoppingCart.Models.Data;
-namespace CmsShoppingCart.Models.ViewModels.Pages
+
+namespace CmsShoppingCart.Models.ViewModels.Shop
 {
     public class ShopVM
     {
+
+
 
         public ShopVM()
         {

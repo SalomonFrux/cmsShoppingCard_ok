@@ -4,13 +4,13 @@
 .ui-state-highlight{
     border:10px dashed #ccc;
 }
-div.new-category 
+div.newcategory 
  {
     /*adding this to the categorie.cshtml*/
     margin-top: 30px;
     position: relative;
 }
-span.ajaxtext{
+.ajaxtext{
     display: none;
 }
 
