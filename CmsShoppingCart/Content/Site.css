@@ -1,16 +1,17 @@
 ﻿table.sorting  tr:not(.home){
-    cursor:pointer;
+    cursor:grab;
 }
 .ui-state-highlight{
-    border:10px dashed #ccc;
+    border:1px dashed #ccc;
 }
-div.newcategory 
- {
-    /*adding this to the categorie.cshtml*/
-    margin-top: 30px;
-    position: relative;
+div.NewCategoryDiv
+{
+    padding-top:30px;
 }
-.ajaxtext{
-    display: none;
+span.NewCategorySpan
+{
+    display:none;
 }
-
+table#Pages td {
+    padding: 10px;
+}

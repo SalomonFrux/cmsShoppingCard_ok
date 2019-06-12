@@ -10,8 +10,12 @@ namespace CmsShoppingCart.Models.Data
     {
         public DbSet<PageDTO> Pages  { get; set; }
         public DbSet<SidebarDTO> Sidebar { get; set; }
-        public DbSet<ShopDTO> Shops { get; set; }
+        public DbSet<ShopCategoriesDTO> ShopCategoriesDTOs { get; set; }
 
-        
+        public DbSet<ProductDTO> ProductDTOs { get; set; }
+
+
+
+
     }
 } 

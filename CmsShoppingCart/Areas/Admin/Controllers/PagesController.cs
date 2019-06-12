@@ -277,7 +277,7 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
                 //save changes 
                 sam.SaveChanges();
 
-                TempData["SM"] = "Sidebar edited successfully";
+                     
             }
             // redirect
             return  RedirectToAction("EditSidebar");

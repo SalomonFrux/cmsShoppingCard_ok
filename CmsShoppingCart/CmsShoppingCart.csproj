@@ -134,12 +134,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\PageDTO.cs" />
+    <Compile Include="Models\Data\ProductDTO.cs" />
     <Compile Include="Models\Data\Sam.cs" />
-    <Compile Include="Models\Data\ShopDTO.cs" />
+    <Compile Include="Models\Data\ShopCategoriesDTO.cs" />
     <Compile Include="Models\Data\SidebarDTO.cs" />
     <Compile Include="Models\ViewModels\Pages\PageVM.cs" />
     <Compile Include="Models\ViewModels\Pages\SidebarVM.cs" />
-    <Compile Include="Models\ViewModels\Shop\ShopVM.cs" />
+    <Compile Include="Models\ViewModels\Shop\ProductsVM.cs" />
+    <Compile Include="Models\ViewModels\Shop\ShopCategoriesVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +173,8 @@
     <Content Include="Scripts\ckeditor\ckeditor.asp" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
     <Content Include="Scripts\ckeditor\ckeditor.pack" />
-    <Content Include="Areas\Admin\Views\Shop\CategoriesPage.cshtml" />
+    <Content Include="Areas\Admin\Views\Shop\ShopCategories.cshtml" />
+    <Content Include="Areas\Admin\Views\Shop\AddProduct.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\ckeditor.php" />
     <Content Include="Scripts\ckeditor\ckeditor_basic.js" />
