@@ -14,7 +14,7 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
      //   {
             //Declare a list of pageVM
 
-            List<PageVM> pageList;
+          //  List<PageVM> pageList;
 
             using (Sam db = new Sam())
             {
