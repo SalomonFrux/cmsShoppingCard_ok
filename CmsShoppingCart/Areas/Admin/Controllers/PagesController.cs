@@ -11,7 +11,7 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
     {
         // GET: Admin/Pages
         public ActionResult Index()
-        {
+     //   {
             //Declare a list of pageVM
 
             List<PageVM> pageList;
