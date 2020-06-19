@@ -144,7 +144,7 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
                 if (pageVM.Slug != "home")
                 {
                     if (string.IsNullOrWhiteSpace(pageVM.Slug))
-                    {
+                //    {
                         slug = pageVM.Title.Replace(" ", " ").ToLower();
 
                     }
