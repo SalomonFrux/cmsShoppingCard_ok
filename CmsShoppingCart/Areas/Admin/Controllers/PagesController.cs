@@ -165,9 +165,9 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
 
                 //DTO the rest 
                // pageDTO.HasSidebar = pageVM.HasSidebar;
-                pageDTO.Slug = slug;
+             //   pageDTO.Slug = slug;
                 pageDTO.Body = pageVM.Body;
-
+//
                 // save the DTO 
                 sam.SaveChanges();
 
